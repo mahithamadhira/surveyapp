@@ -2,32 +2,27 @@ const express = require("express");
 const sharp = require("sharp");
 const axios = require("axios");
 const fs = require("fs");
+const path = require("path");
+const fetch = require('node-fetch');
 
-exports.generateThumbnail = async (req, res) => {
-const { url } = req.body;
-
-// try {
-//         console.log(url);
-//         const response = await axios.get(url, {responseType: "arraybuffer"});
-//         console.log(response);
-//         const filePath = "../utils/temp.jpg";
-//         fs.writeFileSync("../utils/temp.jpg", new Buffer.from(response.data, "binary"));
-
-//         sharp("../utils/temp.jpg")
-//         .resize(50, 50)
-//         .toBuffer()
-//         .then(data => {
-//             res.set("Content-Type", "image/jpeg");
-//             res.send(data);
-//         })
-//         .catch(error => {
-//             res.status(500).send({ message: error.message });
-//         });
-//     } catch (error) {
-//         res.status(500).send({ message: error.message });
-//     }
-// };
-
-
-
-
+exports.generateThumbNail = async (req, res, next) => {
+    console.log(req.body.url);
+    try {
+      const response = await axios.get(req.body.url, { responseType: "arraybuffer" });
+      const buffer = Buffer.from(response.data, "binary");
+      try {
+        const resizedImage = await sharp(buffer)
+          .resize(50, 50)
+          .jpeg({ quality: 50 })
+          .toBuffer();
+        res.set("Content-Type", "image/jpeg");
+        res.send(resizedImage);
+      } catch (error) {
+        console.log(error);
+        res.status(500).send({ message: error.message });
+      }
+    } catch (error) {
+      console.log(error);
+      res.status(500).send({ message: error.message });
+    }
+  };
