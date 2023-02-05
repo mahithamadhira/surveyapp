@@ -11,6 +11,11 @@ Operations 2 & 4 are useful if there's no db files (persistent data) available
 6. Import the postman collection provided in the below section and hit the cURLs to view results.
 
 #Postman Collection
+7. download the postman collection .js and import it into your local postman. 
+8. hit the curls one by one to see the responses.
+
+
+![ER diagram](https://user-images.githubusercontent.com/59522678/216814287-003b2569-b2da-4624-8f92-b429d990e5d6.png)
 
 
 
