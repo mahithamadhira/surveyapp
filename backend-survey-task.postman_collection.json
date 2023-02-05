@@ -1,0 +1,162 @@
+{
+	"info": {
+		"_postman_id": "357ed213-c986-4179-9cab-afbd0dc2f036",
+		"name": "backend-survey-task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "/auth/login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"user4\",\n\t\"password\": \"Ram@91764\"\n}"
+				},
+				"url": {
+					"raw": "localhost:3000/auth/login",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"auth",
+						"login"
+					]
+				},
+				"description": "This curl makes a POST request to the /auth/login endpoint with the username and password as the request body. \nThe expected response would be a JSON object with a token key and its value being the JWT token.\n"
+			},
+			"response": []
+		},
+		{
+			"name": "/surveys/create",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTEsImlhdCI6MTY3NTU3MjgyNCwiZXhwIjoxNjc1NjU5MjI0fQ.P25RmmRTuJVsAwGvZKYAkCMCudiG0v7ExvGzCHd4MxU"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"questions\": [\n        { \"question\": \"Q1?\" },\n        { \"question\": \"Q2?\" }\n    ]   \n}\n\n\n"
+				},
+				"url": {
+					"raw": "http://localhost:3000/surveys/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"surveys",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/surveys/take",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzU1Mzk0NzEsImV4cCI6MTY3NTYyNTg3MX0.OnUYTfttMCtldw98if4jFuaWNZiB1WfAZRD85PKOowc"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"id\": 2,\n\t\"answers\": [\"yes\", \"o\"]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/surveys/take",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"surveys",
+						"take"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/surveys/results",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "x-access-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NzU1Mzk0NzEsImV4cCI6MTY3NTYyNTg3MX0.OnUYTfttMCtldw98if4jFuaWNZiB1WfAZRD85PKOowc"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/surveys/results",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"surveys",
+						"results"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/api/image/thumbnail",
+			"protocolProfileBehavior": {
+				"strictSSL": false
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \"url\": \"https://cloud.toddleapp.com/assets/toddleapp.com/illustrations/hero/homePageHero.png\" }"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/image/thumbnail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"image",
+						"thumbnail"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
